@@ -7,4 +7,10 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/bluetooth_connect"
+        android:title="@string/bluetooth_connect"
+        android:icon="@drawable/ic_bluetooth_24dp"
+
+        app:showAsAction="ifRoom" />
 </menu>
