@@ -97,6 +97,7 @@ public class BluetoothService extends Thread{
             }
         }
     }
+
     private class SendThread extends Thread{
         BluetoothDevice targetDevices;
         OutputStream mOutput;
@@ -118,6 +119,7 @@ public class BluetoothService extends Thread{
             }
         }
     }
+
     public LinkedList<BluetoothDevice> getBondedDeivices(){
         LinkedList<BluetoothDevice> devices = new LinkedList<>();
         devices.addAll(BA.getBondedDevices());

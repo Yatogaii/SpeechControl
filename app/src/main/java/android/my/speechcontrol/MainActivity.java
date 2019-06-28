@@ -85,14 +85,6 @@ public class MainActivity extends AppCompatActivity implements EventListener {
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         /* 自己的代码 */
         isRecording = false;
@@ -292,7 +284,11 @@ public class MainActivity extends AppCompatActivity implements EventListener {
                         //这里已经不是判断翻转了，而是直接将全部的角度数据处理后发送给蓝牙设备
                         if (isSensoring) {
                             float[] trueAngle = (float[]) mes.obj;
-                            angleView.setText("角度为:x:"+(int)trueAngle[0]+" y:"+(int)trueAngle[1]+" z:"+(int)trueAngle[2]);
+                            if(trueAngle == null){
+                                Toast.makeText(getApplicationContext(),"没有角度：NULL",Toast.LENGTH_SHORT);
+                                break;
+                            }
+                            angleView.setText("角度为:x:"+(int)trueAngle[2]+" y:"+(int)trueAngle[1]+" z:"+(int)trueAngle[0]);
                             angle = float2Byte(trueAngle);
                             break;
                         } else {
