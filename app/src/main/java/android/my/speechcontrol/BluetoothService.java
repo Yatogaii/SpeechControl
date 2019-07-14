@@ -28,10 +28,10 @@ public class BluetoothService extends Thread{
     public BluetoothService(BluetoothAdapter BA, Handler mHandler){
         this.mHandler = mHandler;
         mSocket = null;
-        this.BA = BA;
+        this.BA = BA;       //蓝牙适配器
     }
 
-    private class ReciveThread extends Thread {
+    private class ReciveThread extends Thread { //接受线程
         byte[] bytes ;
         @Override
         public void run(){
@@ -67,6 +67,8 @@ public class BluetoothService extends Thread{
         Log.d(TAG, "Start");
         new ConnectThread(device).start();
     }
+
+    //蓝牙链接线程，在connect函数里调用
     private class ConnectThread extends Thread{
         BluetoothDevice mDevice;
         BluetoothSocket tmpSoc;

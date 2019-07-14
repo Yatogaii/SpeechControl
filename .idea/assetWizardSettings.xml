@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/D:/Android%20SDK/plugins/android/lib/android.jar!/images/material_design_icons/editor/ic_format_bold_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/D:/Android%20SDK/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_mic_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,7 +33,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_bluetooth_24dp" />
+                            <entry key="outputName" value="ic_mic_black_24dp" />
                             <entry key="sourceFile" value="C:\Users\Administrator" />
                           </map>
                         </option>

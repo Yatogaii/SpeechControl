@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="40dp"
+            android:text="飞行高度:"/>
+        <EditText
+            android:id="@+id/commnad"
+            android:layout_width="99dp"
+            android:layout_height="40dp"
+            android:inputType="text"
+            android:text="请输入高度"
+            tools:ignore="Autofill,LabelFor" />
+
+        <Button
+            android:id="@+id/commit"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:text="提交"
+            android:background="@drawable/shape_btn"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/angle_x"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="X:None"
+                />
+            <!-- Layout_gravity是指该控件在父布局的位置，gravity是指这个控件的子控件的布局 -->
+            <TextView
+                android:id="@+id/angle_y"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Y:None"
+                />
+            <TextView
+                android:id="@+id/angle_z"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="X:None"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:orientation="vertical">
+
+            <Switch
+                android:id="@+id/isSensoring"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="体感检测"/>
+
+            <Button
+                android:id="@+id/load_task"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_btn"
+                android:text="加载任务"
+                />
+
+            <Button
+                android:id="@+id/start_task"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_btn"
+                android:text="执行任务"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/speechControl"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+
+            android:background="@drawable/btn_mic_rec" />
+
+        <ImageView
+            android:layout_width="61dp"
+            android:layout_height="52dp"
+            android:layout_alignStart="@id/speechControl"
+            android:layout_alignTop="@id/speechControl"
+            android:layout_alignEnd="@id/speechControl"
+            android:layout_alignBottom="@id/speechControl"
+            android:layout_margin="12dp"
+            android:contentDescription="TODO"
+            app:srcCompat="@drawable/ic_mic_black_24dp" />
+
+    </RelativeLayout>
+</LinearLayout>

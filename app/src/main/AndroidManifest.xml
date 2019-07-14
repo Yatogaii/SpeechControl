@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="android.my.speechcontrol">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -17,7 +18,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:appComponentFactory=""
+        tools:replace="android:appComponentFactory">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -27,6 +30,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="UiActicivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
 
         <meta-data
@@ -38,6 +51,7 @@
         <meta-data
             android:name="android.my.speechcontrol.SECRET_KEY"
             android:value="NbkUE6Mi8N2aFAQl2tP2521Nwa5c4xzC"/>
+
     </application>
 
 </manifest>

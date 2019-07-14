@@ -1,6 +1,7 @@
 package android.my.speechcontrol;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.ClipData;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.renderscript.ScriptC;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -40,6 +42,7 @@ import com.baidu.speech.EventListener;
 import com.baidu.speech.EventManager;
 import com.baidu.speech.EventManagerFactory;
 import com.baidu.speech.asr.SpeechConstant;
+import com.xuexiang.xui.XUI;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -62,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements EventListener {
 
     TextView angleView;
     TextView flyMode;
+    TextView angleX,angleY,angleZ;
+
 
     Button submit;
     Switch sensorSwitch;
@@ -77,21 +82,25 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     SensorClient mSensorClient;
     LinkedList<BluetoothDevice> mDevicesVector;
     Toolbar toolbar;
+    CoordinatorLayout snackContainer;
     public static final byte TAKE_OFF = 'T';
     public static final byte ROLL = 'R';
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        XUI.init(getApplication());
+        XUI.debug(true);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         /* 自己的代码 */
         isRecording = false;
-        /* 初始化包括语音识别和陀螺仪的功能 */
-        init();
         /* 初始化一些按键 */
         initInterface();
+        /* 初始化包括语音识别和陀螺仪的功能 */
+        init();
+
         /* 动态申请权限 */
         initPermission();
         mSensorClient.start();
@@ -118,9 +127,13 @@ public class MainActivity extends AppCompatActivity implements EventListener {
 
         return super.onOptionsItemSelected(item);
     }
+    @SuppressLint("ResourceType")
     private void initInterface(){
         /* 显示飞行模式的文本框的初始化 */
-        flyMode = findViewById(R.id.ModeViewer);
+        flyMode = findViewById(R.id.fly_mode);
+        angleX = findViewById(R.id.angle_x);
+        angleY = findViewById(R.id.angle_y);
+        angleZ = findViewById(R.id.angle_z);
         angleView = findViewById(R.id.AngleView);
         angleView.setText("角度初始化中");
         flyMode.setText("默认飞行模式");
@@ -288,6 +301,9 @@ public class MainActivity extends AppCompatActivity implements EventListener {
                                 Toast.makeText(getApplicationContext(),"没有角度：NULL",Toast.LENGTH_SHORT);
                                 break;
                             }
+                            angleX.setText(""+(int)(trueAngle[2]));
+                            angleY.setText(""+(int)(trueAngle[1]));
+                            angleZ.setText(""+(int)(trueAngle[0]));
                             angleView.setText("角度为:x:"+(int)trueAngle[2]+" y:"+(int)trueAngle[1]+" z:"+(int)trueAngle[0]);
                             angle = float2Byte(trueAngle);
                             break;
@@ -371,6 +387,8 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         // 此处为android 6.0以上动态授权的回调，用户自行实现。
     }
+
+    /* 出现SnackBar的方法 */
 
     /* 蓝牙选择及界面 */
     private void showBluetoothDevices(){
