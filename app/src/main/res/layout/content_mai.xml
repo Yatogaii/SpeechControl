@@ -30,7 +30,6 @@
             android:layout_width="99dp"
             android:layout_height="40dp"
             android:inputType="text"
-            android:text="请输入高度"
             tools:ignore="Autofill,LabelFor" />
 
         <Button
@@ -101,7 +100,8 @@
                 android:id="@+id/isSensoring"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:text="体感检测"/>
+                android:gravity="center"
+                android:text="体感"/>
 
             <Button
                 android:id="@+id/load_task"

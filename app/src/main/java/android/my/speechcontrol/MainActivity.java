@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothManager;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.DataSetObserver;
 import android.hardware.SensorManager;
@@ -83,6 +84,8 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     LinkedList<BluetoothDevice> mDevicesVector;
     Toolbar toolbar;
     CoordinatorLayout snackContainer;
+
+    public static final int GO_GUIDE = -990;
     public static final byte TAKE_OFF = 'T';
     public static final byte ROLL = 'R';
     @Override
@@ -225,61 +228,19 @@ public class MainActivity extends AppCompatActivity implements EventListener {
 
                     mEventManager.send(SpeechConstant.ASR_START, new JSONObject(params).toString(), null, 0, 0);    //开始录音
                     isRecording = true;
-                    speechControl.setText("停止录音");      //改变开关显示文字
+//                    speechControl.setText("停止录音");      //改变开关显示文字
                 } else if (action == MotionEvent.ACTION_UP){//按键松开
                     mEventManager.send(SpeechConstant.ASR_STOP, null, null, 0, 0); // 发送停止录音事件，提前结束录音等待识别结果
 //                    mEventManager.send(SpeechConstant.ASR_CANCE, null, null, 0, 0); // 取消本次识别，取消后将立即停止不会返回识别结果
                     isRecording = false;
-                    speechControl.setText("开始录音");
+//                    speechControl.setText("开始录音");
                     Toast.makeText(getApplicationContext(),"请稍等识别结果",Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }
         });
-        //尝试使用长按键
-        /*
-        speechControl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!isRecording){
-                    Map<String, Object> params = new LinkedHashMap<String, Object>();
-                    params.put(SpeechConstant.APP_ID, appid);
-                    params.put(SpeechConstant.APP_KEY,appKey);
-                    params.put(SpeechConstant.SECRET,secret);
-                    params.put(SpeechConstant.PID, 1536);  //默认1536
-                    params.put(SpeechConstant.DECODER, 0); // 纯在线(默认)
-                    params.put(SpeechConstant.VAD, SpeechConstant.VAD_DNN); // 语音活动检测
-//                     params.put(SpeechConstant.VAD_ENDPOINT_TIMEOUT, 2000); // 不开启长语音。开启VAD尾点检测，即静音判断的毫秒数。建议设置800ms-3000ms
-                    params.put(SpeechConstant.ACCEPT_AUDIO_DATA, false);// 是否需要语音音频数据回调
-                    params.put(SpeechConstant.ACCEPT_AUDIO_VOLUME, false);// 是否需要语音音量数据回调
-                    params.put(SpeechConstant.VAD_TOUCH,true);         //这一句控制按下结束录音键之后才会开始发送语音数据
-                    // 自动检查是否有错误
-                    (new AutoCheck(getApplicationContext(), new Handler() {
-                        public void handleMessage(Message msg) {
-                            if (msg.what == 100) {
-                                AutoCheck autoCheck = (AutoCheck) msg.obj;
-                                synchronized (autoCheck) {
-                                    String message = autoCheck.obtainErrorMessage(); // autoCheck.obtainAllMessage();
-                                    Log.w("AutoCheckMessage", message);
-                                }
-                            }
-                        }
-                    },false)).checkAsr(params);
-
-                    mEventManager.send(SpeechConstant.ASR_START, new JSONObject(params).toString(), null, 0, 0);    //开始录音
-                    isRecording = true;
-                    speechControl.setText("停止录音");      //改变开关显示文字
-                }else{
-                    mEventManager.send(SpeechConstant.ASR_STOP, null, null, 0, 0); // 发送停止录音事件，提前结束录音等待识别结果
-//                    mEventManager.send(SpeechConstant.ASR_CANCE, null, null, 0, 0); // 取消本次识别，取消后将立即停止不会返回识别结果
-                    isRecording = false;
-                    speechControl.setText("开始录音");
-                    Toast.makeText(getApplicationContext(),"请稍等识别结果",Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });*/
     }
+    @SuppressLint("HandlerLeak")
     private void init() {
         mHandler = new Handler(){
             @Override
@@ -298,12 +259,12 @@ public class MainActivity extends AppCompatActivity implements EventListener {
                         if (isSensoring) {
                             float[] trueAngle = (float[]) mes.obj;
                             if(trueAngle == null){
-                                Toast.makeText(getApplicationContext(),"没有角度：NULL",Toast.LENGTH_SHORT);
+                                Toast.makeText(getApplicationContext(),"没有角度：NULL",Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            angleX.setText(""+(int)(trueAngle[2]));
-                            angleY.setText(""+(int)(trueAngle[1]));
-                            angleZ.setText(""+(int)(trueAngle[0]));
+                            angleX.setText("X:"+(int)(trueAngle[2]));
+                            angleY.setText("Y:"+(int)(trueAngle[1]));
+                            angleZ.setText("Z:"+(int)(trueAngle[0]));
                             angleView.setText("角度为:x:"+(int)trueAngle[2]+" y:"+(int)trueAngle[1]+" z:"+(int)trueAngle[0]);
                             angle = float2Byte(trueAngle);
                             break;
@@ -328,6 +289,7 @@ public class MainActivity extends AppCompatActivity implements EventListener {
             mEventManager = EventManagerFactory.create(this,"asr"); //这一句报错空指针
             mEventManager.registerListener(this);}catch (Exception e){e.printStackTrace();};
     }
+
 
     /* 百度语音的EventListener接口方法的重写。 */
     @Override
