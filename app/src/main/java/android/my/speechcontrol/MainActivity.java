@@ -91,10 +91,8 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        XUI.init(getApplication());
-        XUI.debug(true);
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         /* 自己的代码 */
@@ -134,14 +132,14 @@ public class MainActivity extends AppCompatActivity implements EventListener {
     private void initInterface(){
         /* 显示飞行模式的文本框的初始化 */
         flyMode = findViewById(R.id.fly_mode);
-        angleX = findViewById(R.id.angle_x);
-        angleY = findViewById(R.id.angle_y);
-        angleZ = findViewById(R.id.angle_z);
+//        angleX = findViewById(R.id.angle_x);
+//        angleY = findViewById(R.id.angle_y);
+//        angleZ = findViewById(R.id.angle_z);
         angleView = findViewById(R.id.AngleView);
         angleView.setText("角度初始化中");
         flyMode.setText("默认飞行模式");
         /* 输入框和提交按钮的初始化 */
-        inputText = findViewById(R.id.commnad);
+        inputText = findViewById(R.id.command);
         inputText.setInputType(InputType.TYPE_CLASS_NUMBER);
         submit = findViewById(R.id.commit);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -262,9 +260,9 @@ public class MainActivity extends AppCompatActivity implements EventListener {
                                 Toast.makeText(getApplicationContext(),"没有角度：NULL",Toast.LENGTH_SHORT).show();
                                 break;
                             }
-                            angleX.setText("X:"+(int)(trueAngle[2]));
-                            angleY.setText("Y:"+(int)(trueAngle[1]));
-                            angleZ.setText("Z:"+(int)(trueAngle[0]));
+//                            angleX.setText("X:"+(int)(trueAngle[2]));
+//                            angleY.setText("Y:"+(int)(trueAngle[1]));
+//                            angleZ.setText("Z:"+(int)(trueAngle[0]));
                             angleView.setText("角度为:x:"+(int)trueAngle[2]+" y:"+(int)trueAngle[1]+" z:"+(int)trueAngle[0]);
                             angle = float2Byte(trueAngle);
                             break;

@@ -5,12 +5,17 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="联系我们"
         app:showAsAction="never" />
     <item
         android:id="@+id/bluetooth_connect"
         android:title="@string/bluetooth_connect"
         android:icon="@drawable/ic_bluetooth_24dp"
-
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/open_bbs"
+        android:title="@string/bluetooth_connect"
+        android:titleCondensed="论坛"
+        android:tooltipText="打开论坛"
+        app:showAsAction="always" />
 </menu>

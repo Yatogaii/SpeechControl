@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -21,22 +21,23 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_mai" />
+    <include
+        layout="@layout/content_main_t" />
 
-    <TextView
-        android:id="@+id/fly_mode"
-        android:layout_width="1dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="300dp"
-        android:text="@+String/飞行模式" />
+    <!--<TextView-->
+        <!--android:id="@+id/fly_mode"-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginTop="300dp"-->
+        <!--android:text="@+String/飞行模式" />-->
 
-    <TextView
-        android:id="@+id/AngleView"
-        android:layout_width="1dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        android:layout_gravity="center"
-        android:text="@+String/角度:" />
+    <!--<TextView-->
+        <!--android:id="@+id/AngleView"-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="250dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:text="@+String/角度:" />-->
 
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

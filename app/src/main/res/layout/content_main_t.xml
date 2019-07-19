@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toStartOf="@id/isSensoring"
+            android:text="体感检测" />
+
+        <Switch
+            android:id="@+id/isSensoring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="68dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/angle_sensitivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_alignParentTop="true"
+
+            android:text="角度灵敏度" />
+
+        <SeekBar
+            android:id="@+id/sensitivity_edit"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/angle_sensitivity"
+            android:max="10" />
+
+        <TextView
+            android:id="@+id/fly_speed"
+            android:layout_margin="5dp"
+            android:layout_below="@id/sensitivity_edit"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="飞行速度" />
+
+        <SeekBar
+            android:id="@+id/speed_edit"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fly_speed"
+            android:max="10" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="飞行高度:"/>
+        <EditText
+            android:id="@+id/command"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            />
+        <Button
+            android:id="@+id/commit"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:text="提交"
+            android:background="@drawable/shape_btn"
+            />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/AngleView"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:text="角度"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/load_task"
+            android:layout_width="150dp"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="20dp"
+            android:text="执行任务"
+            android:background="@drawable/shape_btn"
+            android:layout_height="40dp" />
+
+        <Button
+            android:id="@+id/start_task"
+            android:layout_width="150dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/shape_btn"
+            android:text="开始任务"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fly_mode"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="飞行模式"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/speechControl"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+
+            android:background="@drawable/btn_mic_rec" />
+
+        <ImageView
+            android:layout_width="61dp"
+            android:layout_height="52dp"
+            android:layout_alignStart="@id/speechControl"
+            android:layout_alignTop="@id/speechControl"
+            android:layout_alignEnd="@id/speechControl"
+            android:layout_alignBottom="@id/speechControl"
+            android:layout_margin="12dp"
+            android:contentDescription="TODO"
+            app:srcCompat="@drawable/ic_mic_black_24dp" />
+
+    </RelativeLayout>
+</LinearLayout>
